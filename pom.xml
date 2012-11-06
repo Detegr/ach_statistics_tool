@@ -19,7 +19,12 @@
             <artifactId>android</artifactId>
             <version>${platform.version}</version>
             <scope>provided</scope>
-        </dependency>
+	</dependency>
+	<dependency>
+	    <groupId>postgresql</groupId>
+	    <artifactId>postgresql</artifactId>
+	    <version>9.1-901.jdbc4</version>
+	</dependency>
     </dependencies>
 
     <build>
