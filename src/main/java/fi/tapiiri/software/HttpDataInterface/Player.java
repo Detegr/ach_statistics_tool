@@ -52,4 +52,8 @@ public class Player
 	public boolean isActive() {
 		return active;
 	}
+
+	public String toString() {
+		return firstName + " " + lastName;
+	}
 }

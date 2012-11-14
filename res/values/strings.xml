@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello ach_statistics_tool!</string>
-    <string name="app_name">ach_statistics_tool</string>
+    <string name="hello">AC Hannes 4 life</string>
+    <string name="app_name">AC Hannes Statistics Tool</string>
+    <string name="player_names">Player names</string>
+    <string name="opponent_dates">Opponent - Date</string>
+    <string name="statistics_item_names">Statistics items</string>
+    <string name="add">Add +</string>
+    <string name="reduce">Reduce -</string>
+
 </resources>
