@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 public class HttpInterface
 {
-	public static List<Player> GetPlayers(String url) throws MalformedURLException
+	public static List<Player> getPlayers(String url) throws MalformedURLException
 	{
 		URL u=new URL(url);
 		HttpURLConnection conn=null;
