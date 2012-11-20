@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4.16" >
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="72dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/player_names"
@@ -10,6 +22,16 @@
             android:layout_height="wrap_content"
             android:text="@string/player_names"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textMultiLine" >
+
+            <requestFocus />
+        </EditText>
 
         <Spinner
             android:id="@+id/player_spinner"
@@ -20,7 +42,7 @@
             android:id="@+id/match_opponent_dates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-	    android:text="@string/opponent_dates"
+            android:text="@string/opponent_dates"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Spinner
@@ -32,7 +54,7 @@
             android:id="@+id/statistics_item_names"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-	    android:text="@string/statistics_item_names"
+            android:text="@string/statistics_item_names"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Spinner
@@ -40,16 +62,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/add"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add" />
+            android:layout_weight="1.51" >
 
-        <Button
-            android:id="@+id/reduce"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-	    android:text="@string/reduce" />
+            <Button
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.50"
+                android:text="@string/add" />
+
+            <Button
+                android:id="@+id/reduce"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.50"
+                android:text="@string/reduce" />
+
+        </LinearLayout>
 
     </TableLayout>

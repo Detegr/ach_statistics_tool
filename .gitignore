@@ -3,5 +3,5 @@ bin/
 .settings/
 .classpath
 .project
-.*.swp
 tags
+project.properties
