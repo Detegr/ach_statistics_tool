@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
+		android:background="@color/green"
                 android:text="@string/add" />
 
             <Button
@@ -77,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0.50"
+		android:background="@color/red"
                 android:text="@string/reduce" />
 
         </LinearLayout>

@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
 	}
 	catch (Exception e) {
 	}
-	//System.out.print(player_list.toString());
 	ArrayAdapter<Player> players_adapter = new ArrayAdapter<Player>(this, android.R.layout.simple_spinner_item, player_list);
 
 	players_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
