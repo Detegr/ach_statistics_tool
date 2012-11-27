@@ -1,8 +1,5 @@
 package fi.tapiiri.software.HttpDataInterface;
 
-import java.util.List;
-
-public class PlayerResponse
+public class PlayerResponse extends Response<Player>
 {
-	public List<Player> response;
 }

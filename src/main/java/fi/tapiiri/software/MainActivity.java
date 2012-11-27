@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 	Spinner p_spinner = (Spinner) findViewById(R.id.player_spinner);
 	List<Player> player_list = null;
 	try {
-	player_list = HttpInterface.getPlayers("http://muum.org:8080/players");
+	player_list = HttpInterface.getData("http://muum.org:8080/players", PlayerResponse.class);
 	}
 	catch (Exception e) {
 	}

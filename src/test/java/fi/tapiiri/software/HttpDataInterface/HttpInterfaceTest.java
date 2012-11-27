@@ -18,7 +18,7 @@ public class HttpInterfaceTest
 		List<Player> players=null;
 		try
 		{
-			players=HttpInterface.getPlayers("http://muum.org:8080/players");
+			players=HttpInterface.getData("http://muum.org:8080/players", PlayerResponse.class);
 		} catch(URISyntaxException e)
 		{
 			Assert.assertTrue(false);
