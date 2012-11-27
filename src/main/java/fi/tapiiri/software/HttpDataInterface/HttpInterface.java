@@ -115,7 +115,7 @@ public class HttpInterface
 	public static boolean deleteEvent(String url) throws URISyntaxException
 	{
 		HttpClient client = new DefaultHttpClient();
-		HttpDelete delete = new HttpDelete();
+		HttpDelete delete = new HttpDelete(url);
 		HttpResponse r=null;
 		try
 		{
