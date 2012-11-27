@@ -5,8 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Exception;
+import java.net.URISyntaxException;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 import fi.tapiiri.software.HttpDataInterface.*;
 
 public class MainActivity extends Activity {
@@ -21,8 +28,9 @@ public class MainActivity extends Activity {
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 		Log.i(TAG, "onCreate");
+
         setContentView(R.layout.main);
 	
 	Spinner p_spinner = (Spinner) findViewById(R.id.player_spinner);
@@ -36,9 +44,6 @@ public class MainActivity extends Activity {
 
 	players_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	p_spinner.setAdapter(players_adapter);
-	
-
     }
-
 }
 
