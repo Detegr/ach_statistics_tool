@@ -1,6 +1,6 @@
 package fi.tapiiri.software.HttpDataInterface;
 
-import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class HttpInterfaceTest
 		try
 		{
 			players=HttpInterface.getPlayers("http://muum.org:8080/players");
-		} catch(MalformedURLException e)
+		} catch(URISyntaxException e)
 		{
 			Assert.assertTrue(false);
 		}
