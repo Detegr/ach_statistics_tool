@@ -7,9 +7,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.List;
+
+import org.apache.http.HttpException;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
 
@@ -43,5 +51,37 @@ public class HttpInterface
 		PlayerResponse players=gson.fromJson(builder.toString(), PlayerResponse.class);
 
 		return players.response;
+	}
+
+	public static boolean insertEvent(String url, List<NameValuePair> params) throws URISyntaxException
+	{
+		HttpClient client = new DefaultHttpClient();
+		HttpPost post = new HttpPost(url);
+		try
+		{
+			post.setEntity(new UrlEncodedFormEntity(params));
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+			return false;
+		}
+		HttpResponse r=null;
+		try
+		{
+			r=client.execute(post);
+		}
+		catch(HttpException e)
+		{
+			System.out.println(e);
+			return false;
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+			return false;
+		}
+		System.out.println(r.getEntity());
+		return true;
 	}
 }
