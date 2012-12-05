@@ -32,7 +32,7 @@ public class HttpInterfaceTest
 		Assert.assertNotSame(players.size(), 0);
 	}
 
-	@Test
+/*	@Test
 	public void testInsertEvent()
 	{
 		ArrayList<NameValuePair> params=new ArrayList<NameValuePair>();
@@ -75,4 +75,5 @@ public class HttpInterfaceTest
 			System.out.println("Deleted PlayerId: 1 MatchId: 9 ItemId: 4");
 		}
 	}
+*/
 }
