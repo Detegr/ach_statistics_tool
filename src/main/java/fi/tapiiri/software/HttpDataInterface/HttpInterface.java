@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 
 public class HttpInterface
 {
-	public static List<Player> getPlayers(String url) throws URISyntaxException
+	public static <T> List<T> getData(String url, Class<? extends Response<T>> cls) throws URISyntaxException
 	{
 		HttpClient client = new DefaultHttpClient();
 		HttpGet get = new HttpGet(url);
@@ -58,9 +58,9 @@ public class HttpInterface
 			return null;
 		}
 		Gson gson=new Gson();
-		PlayerResponse players=gson.fromJson(builder.toString(), PlayerResponse.class);
+		Response<T> mainresponse=gson.fromJson(builder.toString(), cls);
 
-		return players.response;
+		return mainresponse.getResponse();
 	}
 
 	public static List<StatisticsEvent> insertEvent(String url, List<NameValuePair> params) throws URISyntaxException
