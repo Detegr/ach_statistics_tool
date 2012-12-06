@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Exception;
 import java.net.URISyntaxException;
@@ -77,8 +78,37 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			
+			ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+	        Spinner p_spinner, m_spinner, s_spinner;
+	        p_spinner = (Spinner) findViewById(R.id.player_spinner);
+	        m_spinner = (Spinner) findViewById(R.id.match_spinner);
+	        s_spinner = (Spinner) findViewById(R.id.statistics_item_spinner);
+	        
+	        Player player = (Player) p_spinner.getSelectedItem();
+	        Match match = (Match) m_spinner.getSelectedItem();
+	        StatisticsItem item = (StatisticsItem) s_spinner.getSelectedItem();
+	        params.add(new BasicNameValuePair("playerid", "" + player.getId()));
+	        params.add(new BasicNameValuePair("matchid", "" + match.getId()));
+	        params.add(new BasicNameValuePair("itemid", "" + item.getId()));
+	        
 			TextView message = (TextView) findViewById(R.id.message);
 			message.setText("Add button pushed");
+			
+			List<StatisticsEvent> events = null;
+			try
+			{
+				events = HttpInterface.insertEvent("http://muum.org:8080/", params);
+			} 
+			catch (URISyntaxException e)
+			{
+				message.append(": Insertion unsuccessful!");
+				return;
+			}
+			catch (Exception e) {
+				message.append(": Insertion unsuccessful!");
+				return;
+			}
+			message.append(": Insertion successful!");
 			
 		}
 
@@ -91,6 +121,19 @@ public class MainActivity extends Activity {
 			
 			TextView message = (TextView) findViewById(R.id.message);
 			message.setText("Reduce button pushed");
+			
+			try
+			{
+				HttpInterface.deleteEvent("http://muum.org:8080/delete/");
+			} catch (URISyntaxException e)
+			{
+				message.append(": Deletion unsuccessful!");
+				return;
+			} catch (Exception e)
+			{
+				message.append(": Deletion unsuccessful!");
+			}
+			message.append(": Deletion unsuccessful!");
 			
 		}
 		
