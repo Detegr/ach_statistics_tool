@@ -2,7 +2,7 @@ package fi.tapiiri.software.HttpDataInterface;
 
 import java.util.List;
 
-public class StatisticsEventResponse extends Response<StatisticsEvent>
+public class StatisticsEventResponse
 {
 	public List<StatisticsEvent> response;
 }
