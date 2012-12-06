@@ -108,8 +108,8 @@ public class HttpInterface
 			return null;
 		}
 		Gson gson=new Gson();
-		StatisticsEventResponse response = gson.fromJson(builder.toString(), StatisticsEventResponse.class);
-		return response.response;
+		Response<StatisticsEvent> response = gson.fromJson(builder.toString(), StatisticsEventResponse.class);
+		return response.getResponse();
 	}
 
 	public static boolean deleteEvent(String url) throws URISyntaxException
@@ -148,7 +148,7 @@ public class HttpInterface
 			return false;
 		}
 		Gson gson=new Gson();
-		BooleanResponse response = gson.fromJson(builder.toString(), BooleanResponse.class);
-		return response.response;
+		Response<Boolean> response = gson.fromJson(builder.toString(), BooleanResponse.class);
+		return response.getResponse().get(0);
 	}
 }

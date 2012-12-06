@@ -1,6 +1,5 @@
 package fi.tapiiri.software.HttpDataInterface;
 
-public class BooleanResponse
+public class BooleanResponse extends Response<Boolean>
 {
-	boolean response;
 }
