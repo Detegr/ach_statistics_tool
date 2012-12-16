@@ -22,6 +22,7 @@ import fi.tapiiri.software.HttpDataInterface.*;
 
 public class MainActivity extends Activity {
 	
+	private static int lastInsertedEventId;
     private static String TAG = "ach_statistics_tool";
 
     /**
@@ -71,6 +72,8 @@ public class MainActivity extends Activity {
         p_spinner.setAdapter(players_adapter);
         m_spinner.setAdapter(matches_adapter);
         s_spinner.setAdapter(items_adapter);
+
+		lastInsertedEventId=0;
     }
     
     private OnClickListener addListener = new OnClickListener() {
@@ -98,6 +101,10 @@ public class MainActivity extends Activity {
 			try
 			{
 				events = HttpInterface.insertEvent("http://muum.org:8080/", params);
+				if(events.size()>0)
+				{
+					lastInsertedEventId=events.get(0).getId();
+				}
 			} 
 			catch (URISyntaxException e)
 			{
@@ -122,19 +129,27 @@ public class MainActivity extends Activity {
 			TextView message = (TextView) findViewById(R.id.message);
 			message.setText("Reduce button pushed");
 			
-			try
+			if(lastInsertedEventId != 0)
 			{
-				HttpInterface.deleteEvent("http://muum.org:8080/delete/");
-			} catch (URISyntaxException e)
-			{
-				message.append(": Deletion unsuccessful!");
-				return;
-			} catch (Exception e)
-			{
-				message.append(": Deletion unsuccessful!");
+				try
+				{
+					boolean ok=HttpInterface.deleteEvent("http://muum.org:8080/delete/" + lastInsertedEventId);
+					if(ok)
+					{
+						message.append(": Deletion successful!");
+						lastInsertedEventId=0;
+					}
+					else message.append(": Deletion unsuccessful!");
+				} catch (URISyntaxException e)
+				{
+					message.append(": Deletion unsuccessful!");
+					return;
+				} catch (Exception e)
+				{
+					message.append(": Deletion unsuccessful!");
+				}
 			}
-			message.append(": Deletion unsuccessful!");
-			
+			else message.append(": You can only delete the last event you inserted");
 		}
 		
     };
