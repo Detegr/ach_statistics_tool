@@ -22,6 +22,19 @@ import com.google.gson.Gson;
 
 public class HttpInterface
 {
+	/**
+	 * Gets data from the database. User needs to know the url
+	 * and the type of response that particular url returns.
+	 *
+	 * For example for getting all the players, this method is
+	 * used with HttpInterface.getData("serverurl/players", PlayerResponse.class);
+	 *
+	 * @param url Url to fetch data from
+	 * @param cls Response-class to convert fetched data to
+	 * @return List with objects the cls-responseclass represents.
+	 *
+	 * @throws URISyntaxException
+	 */
 	public static <T> List<T> getData(String url, Class<? extends Response<T>> cls) throws URISyntaxException
 	{
 		HttpClient client = new DefaultHttpClient();
@@ -63,6 +76,15 @@ public class HttpInterface
 		return mainresponse.getResponse();
 	}
 
+	/**
+	 * Inserts an statistics event to the database.
+	 *
+	 * @param url Url which responds to http POST-requests correctly
+	 * @param params List of NameValuePair objects that represent the data to give to the POST-request. The data needs to be [playerid,matchid,itemid].
+	 * @return List of statisticsevents inserted. Doesn't contain more than one event but returns a list for consistency.
+	 *
+	 * @throws URISyntaxException
+	 */
 	public static List<StatisticsEvent> insertEvent(String url, List<NameValuePair> params) throws URISyntaxException
 	{
 		HttpClient client = new DefaultHttpClient();
@@ -112,6 +134,14 @@ public class HttpInterface
 		return response.getResponse();
 	}
 
+	/**
+	 * Deletes an event from the database.
+	 *
+	 * @param url Url which responds to DELETE-requests correctly
+	 * @return Boolean value of event deletion succeeding
+	 *
+	 * @throws URISyntaxException
+	 */
 	public static boolean deleteEvent(String url) throws URISyntaxException
 	{
 		HttpClient client = new DefaultHttpClient();
