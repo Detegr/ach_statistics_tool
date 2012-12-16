@@ -12,6 +12,8 @@ import junit.framework.Assert;
 
 public class HttpInterfaceTest
 {
+	private static int mInsertedEventId;
+
 	@Test
 	public void testGetPlayers()
 	{
@@ -55,6 +57,7 @@ public class HttpInterfaceTest
 		{
 			StatisticsEvent e=it.next();
 			System.out.println("Inserted Id:" + e.getId() + " PlayerId: " + e.getPlayerId() + " MatchId: " + e.getMatchId() + " ItemId: " + e.getItemId());
+			mInsertedEventId=e.getId();
 		}
 		
 		Assert.assertNotSame(events.size(), 0);
@@ -63,16 +66,18 @@ public class HttpInterfaceTest
 	@Test
 	public void testDeleteEvent()
 	{
+		Assert.assertNotSame(mInsertedEventId, 0);
 		boolean ok=false;
 		try
 		{
-			ok=HttpInterface.deleteEvent("http://muum.org:8080/delete/1/9/4");
+			System.out.println("Deleting event id: " + mInsertedEventId);
+			ok=HttpInterface.deleteEvent("http://muum.org:8080/delete/" + mInsertedEventId);
 		}
 		catch(Exception e) {}
 		Assert.assertTrue(ok);
 		if(ok)
 		{
-			System.out.println("Deleted PlayerId: 1 MatchId: 9 ItemId: 4");
+			System.out.println("Deleted event " + mInsertedEventId);
 		}
 	}
 }
