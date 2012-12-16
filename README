@@ -1,0 +1,31 @@
+AC Hannes Statistics Tool, the App
+
+Asennus:
+
+- kääntyäkseen projekti tarvitsee Mavenin version 3
+- mvn3 package (deploy aiheutti jonkinlaisen ongelman, mutta varmasti korjattavissa)
+- adb install target/ach_statistics_tool-x.x.apk
+
+====================
+
+Sovellus on suoraa jatkoa Tietokantasovellusharjoitustyölle AC Hannes Statistics Tool: https://github.com/Irkka/ac_hannes_statistics_tool.git
+
+
+AC Hannes Statistics Tool, the Appin, tarkoituksena on tarjota lajiriippumattomille harrastelijajoukkueille reaaliaikainen tilastointimahdollisuus kentän laidalta käsin. Alustava toiminnallisuus kattaa yksittäisten mielivaltaisten tilastotietojen päivittämisen ja viimeisimmän merkinnän poiston. Myöhemmin appiin voisi lisätä web interfacesta tutut tilastojen listaamisominaisuuden ja useiden samanaikaisten tilastosyöttöjen antamisen(esim. pelattujen otteluiden kohdalla).
+
+Käyttöliittymässä ollaan pyritty mahdollisimman yksinkertaiseen ja intuitiiviseen ratkaisuun. Yksinkertaiset valikot määrittelevät selkeästi halutun tilastomerkinnän ja isot ystävälliset nappulat AC Hanneksen väreillä varustettuna kirjoittavat muutokset kantaan. Toistaiseksi poistaminen vähentää viimeisimmän merkinnän, mutta alustava työ on jo tehty valikoivalle poistamiselle. Tässä järjestelyssä käyttäjä voisi vaikkapa ruksia, että haluaa vaihtaa poistonappulan toimintaa ja käyttää valikkoja aiempien merkintöjen poistamiseen. Samojen valikkojen käyttö tilastojen lisäämiseen ja poistamiseen voisi myös auttaa pitämään itse käyttöliittymää vähemmän täyteen ahdettuna.
+
+AC Hannes Statistics Tool, the App, koostuu kolmesta osasta. Itse android-sovelluksesta, web-käyttöliittymästä ja backend-palvelinjärjestelmästä. Android-sovellus on tarkoitettu pääasiassa normaalikäyttäjälle, joka päivittää vain tilastomerkintöjä. Tälle käyttäjäryhmälle voisi myöhemmin luoda jonkinlaisen tunnistautumisen, mutta toistaiseksi tämä ei ole ollut relevanttia. App koostuu vain yhdestä Activitysta, joka käyttää HttpDataInterface paketin työkaluja backendin kanssa keskusteluun. Web-käyttöliittymä on joukkueen johdon käyttämä työkalu kaikenlaisen pysyvämmän tiedon lisäämiseen, kuten uudet pelaajat, ottelut ja tilastoitavien asioiden lisääminen (maalit, loukkaantumiset tai viiksigaalan voitot; nämä ovat vapaasti valittavissa). Nämä tiedot ladataan dynaamisesti android-sovelluksen käyttöön, missä käyttäjä voi valita näitä arvoja valikoista käsin. Sovelluksen backend koostuu tietokannasta ja sitä käyttävästä RESTful tyyliin toteutetusta http-rajapinta-sovelluksesta, jonka kanssa android-sovellus keskustelee: https://github.com/Detegr/ach_statistics_server
+
+
+Pääkäyttötapaus:
+
+Vaihtopenkillä istuva pelaaja haluaa lisätä juuri tehdyn maalin järjestelmään.
+
+1. Pelaaja käynnistää appin
+2. Valitsee ennalta luodut ottelun ja tilastoartikkelin, sekä tilastotapahtuman aiheuttaneen pelaajan.
+3. Pelaaja painaa vihreää lisäysnappia ja tieto kirjataan muistiin.
+
+(Valinnainen osa)
+4. Pelaaja valitsikin vahingossa syötön valikosta maalin sijaan.
+5. Pelaaja painaa punaista vähennysnappia ja järjestelmä kertoo, jos vähennys onnistui. Nyt tilastomerkinnän voi antaa uudelleen.
